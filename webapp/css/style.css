@@ -1,0 +1,20 @@
+/* ============================================================
+   UI5 Theme Switching POC - Minimal custom CSS
+
+   NOTE: Almost no custom CSS is needed!
+   Theming.setTheme() handles all background colors,
+   text colors, borders, etc. automatically.
+
+   This file is only for layout tweaks that are
+   theme-independent.
+   ============================================================ */
+
+/* Fix: ensure full-height layout chain for sap.m.App */
+html, body, body > div, body > div > div {
+    height: 100%;
+}
+
+/* Ensure tiles wrap nicely */
+.sapMGT {
+    margin-bottom: 0.5rem;
+}

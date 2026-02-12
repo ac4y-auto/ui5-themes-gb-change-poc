@@ -1,0 +1,11 @@
+{
+    "name": "poc-theme-switcher",
+    "version": "1.0.0",
+    "description": "UI5 Runtime Theme Switching POC",
+    "scripts": {
+        "start": "npx @ui5/cli serve --open index.html --port 8100",
+        "start:cdn": "npx http-server webapp -p 8080 -o",
+        "build": "npx @ui5/cli build"
+    },
+    "devDependencies": {}
+}

@@ -1,0 +1,212 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:unified="sap.ui.unified"
+    controllerName="poc.themeswitcher.controller.Main">
+
+    <Page id="mainPage" title="UI5 Virtual Theme Switching POC">
+
+        <!-- ============================================================ -->
+        <!-- VIRTUAL THEME CONTROL PANEL                                  -->
+        <!-- ============================================================ -->
+        <Panel id="themePanel" headerText="Virtual Theme Control" class="sapUiSmallMargin">
+            <VBox class="sapUiSmallMargin">
+
+                <!-- Virtual theme selector (bound to THEMES registry) -->
+                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                    <Label text="Virtual Theme:" class="sapUiSmallMarginEnd" />
+                    <Select id="virtualThemeSelect"
+                            selectedKey="{theme>/activeThemeKey}"
+                            change="onVirtualThemeChange"
+                            items="{theme>/themes}">
+                        <core:Item key="{theme>key}" text="{theme>label}" />
+                    </Select>
+                </HBox>
+
+                <!-- Simulated event triggers -->
+                <Label text="Simulate WMS Event:" class="sapUiTinyMarginBottom" />
+                <HBox class="sapUiTinyMarginTop" wrap="Wrap">
+                    <Button id="btnNormal" text="Normal"
+                            icon="sap-icon://sys-enter-2" type="Accept"
+                            press="onSimulateNormal" class="sapUiTinyMarginEnd" />
+                    <Button id="btnWarning" text="Warning"
+                            icon="sap-icon://warning2" type="Attention"
+                            press="onSimulateWarning" class="sapUiTinyMarginEnd" />
+                    <Button id="btnAlarm" text="Alarm"
+                            icon="sap-icon://alert" type="Reject"
+                            press="onSimulateAlarm" class="sapUiTinyMarginEnd" />
+                    <Button id="btnNightShift" text="Night Shift"
+                            icon="sap-icon://night-shift"
+                            press="onSimulateNightShift" class="sapUiTinyMarginEnd" />
+                </HBox>
+
+                <!-- Active theme info -->
+                <VBox class="sapUiSmallMarginTop">
+                    <MessageStrip id="themeInfo"
+                                  text="Active: {theme>/activeThemeLabel}"
+                                  type="Information" showIcon="true" />
+                    <HBox class="sapUiTinyMarginTop" alignItems="Center">
+                        <Label text="Base theme:" class="sapUiTinyMarginEnd" design="Bold" />
+                        <Text text="{theme>/activeBaseTheme}" />
+                        <Label text="CSS patch:" class="sapUiSmallMarginBegin sapUiTinyMarginEnd" design="Bold" />
+                        <ObjectStatus text="{= ${theme>/hasPatch} ? 'Active' : 'None'}"
+                                      state="{= ${theme>/hasPatch} ? 'Warning' : 'Success'}"
+                                      icon="{= ${theme>/hasPatch} ? 'sap-icon://brush' : 'sap-icon://accept'}" />
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </Panel>
+
+        <!-- ============================================================ -->
+        <!-- SHOWCASE: Various UI5 Controls                               -->
+        <!-- These all change automatically with theme + patch            -->
+        <!-- ============================================================ -->
+
+        <!-- Form Controls -->
+        <Panel id="formPanel" headerText="Form Controls" class="sapUiSmallMargin">
+            <form:SimpleForm id="demoForm"
+                             editable="true"
+                             layout="ResponsiveGridLayout"
+                             labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
+                             emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0">
+                <form:content>
+                    <core:Title text="User Information" />
+                    <Label text="Name" />
+                    <Input id="nameInput" value="John Doe" />
+                    <Label text="Email" />
+                    <Input id="emailInput" value="john@example.com" type="Email" />
+                    <Label text="Department" />
+                    <Select id="deptSelect">
+                        <core:Item key="wh" text="Warehouse" />
+                        <core:Item key="lg" text="Logistics" />
+                        <core:Item key="qa" text="Quality Assurance" />
+                    </Select>
+                    <Label text="Active" />
+                    <Switch id="activeSwitch" state="true" />
+                    <Label text="Priority" />
+                    <Slider id="prioritySlider" value="50" min="0" max="100" />
+                    <Label text="Notes" />
+                    <TextArea id="notesArea" value="Sample notes..." rows="3" width="100%" />
+                    <Label text="Start Date" />
+                    <DatePicker id="datePicker" />
+                </form:content>
+            </form:SimpleForm>
+        </Panel>
+
+        <!-- List / Table Controls -->
+        <Panel id="listPanel" headerText="List Controls" class="sapUiSmallMargin">
+            <List id="demoList" headerText="Warehouse Zones" mode="SingleSelectMaster">
+                <StandardListItem title="Zone A - Receiving"
+                                  description="Inbound dock area"
+                                  icon="sap-icon://shipping-status"
+                                  info="Active" infoState="Success" />
+                <StandardListItem title="Zone B - Storage"
+                                  description="Main storage racks"
+                                  icon="sap-icon://inventory"
+                                  info="Active" infoState="Success" />
+                <StandardListItem title="Zone C - Picking"
+                                  description="Order picking area"
+                                  icon="sap-icon://cart"
+                                  info="Busy" infoState="Warning" />
+                <StandardListItem title="Zone D - Shipping"
+                                  description="Outbound staging"
+                                  icon="sap-icon://shipping-status"
+                                  info="Offline" infoState="Error" />
+            </List>
+        </Panel>
+
+        <!-- Status indicators -->
+        <Panel id="statusPanel" headerText="Status Indicators" class="sapUiSmallMargin">
+            <HBox class="sapUiSmallMargin" wrap="Wrap">
+                <ObjectStatus text="OK" state="Success" icon="sap-icon://sys-enter-2"
+                              class="sapUiSmallMarginEnd" />
+                <ObjectStatus text="Pending" state="Warning" icon="sap-icon://warning2"
+                              class="sapUiSmallMarginEnd" />
+                <ObjectStatus text="Error" state="Error" icon="sap-icon://alert"
+                              class="sapUiSmallMarginEnd" />
+                <ObjectStatus text="Info" state="Information" icon="sap-icon://hint"
+                              class="sapUiSmallMarginEnd" />
+            </HBox>
+
+            <HBox class="sapUiSmallMargin" wrap="Wrap">
+                <MessageStrip text="Success message" type="Success"
+                              class="sapUiSmallMarginEnd" showIcon="true" />
+                <MessageStrip text="Warning message" type="Warning"
+                              class="sapUiSmallMarginEnd" showIcon="true" />
+                <MessageStrip text="Error message" type="Error"
+                              class="sapUiSmallMarginEnd" showIcon="true" />
+                <MessageStrip text="Information message" type="Information"
+                              class="sapUiSmallMarginEnd" showIcon="true" />
+            </HBox>
+        </Panel>
+
+        <!-- Buttons and Actions -->
+        <Panel id="actionPanel" headerText="Buttons and Actions" class="sapUiSmallMargin">
+            <HBox class="sapUiSmallMargin" wrap="Wrap">
+                <Button text="Default" class="sapUiTinyMarginEnd" />
+                <Button text="Accept" type="Accept" class="sapUiTinyMarginEnd" />
+                <Button text="Reject" type="Reject" class="sapUiTinyMarginEnd" />
+                <Button text="Emphasized" type="Emphasized" class="sapUiTinyMarginEnd" />
+                <Button text="Transparent" type="Transparent" class="sapUiTinyMarginEnd" />
+                <Button text="Ghost" type="Ghost" class="sapUiTinyMarginEnd" />
+                <Button text="Attention" type="Attention" class="sapUiTinyMarginEnd" />
+                <ToggleButton text="Toggle" pressed="true" class="sapUiTinyMarginEnd" />
+                <SegmentedButton>
+                    <items>
+                        <SegmentedButtonItem text="Option 1" />
+                        <SegmentedButtonItem text="Option 2" />
+                        <SegmentedButtonItem text="Option 3" />
+                    </items>
+                </SegmentedButton>
+            </HBox>
+        </Panel>
+
+        <!-- Tiles -->
+        <Panel id="tilePanel" headerText="Tiles / Cards" class="sapUiSmallMargin">
+            <HBox class="sapUiSmallMargin" wrap="Wrap">
+                <GenericTile id="tile1" header="Orders Today" subheader="Warehouse A"
+                             class="sapUiTinyMarginEnd">
+                    <TileContent>
+                        <NumericContent value="142" scale="pcs" indicator="Up"
+                                        valueColor="Good" />
+                    </TileContent>
+                </GenericTile>
+                <GenericTile id="tile2" header="Pending Picks" subheader="All zones"
+                             class="sapUiTinyMarginEnd">
+                    <TileContent>
+                        <NumericContent value="38" scale="tasks" indicator="Down"
+                                        valueColor="Critical" />
+                    </TileContent>
+                </GenericTile>
+                <GenericTile id="tile3" header="Errors" subheader="Last 24h"
+                             state="Failed" class="sapUiTinyMarginEnd">
+                    <TileContent>
+                        <NumericContent value="5" scale="items"
+                                        valueColor="Error" />
+                    </TileContent>
+                </GenericTile>
+            </HBox>
+        </Panel>
+
+        <!-- Progress Indicators -->
+        <Panel id="progressPanel" headerText="Progress Indicators" class="sapUiSmallMargin">
+            <VBox class="sapUiSmallMargin">
+                <Label text="Warehouse Capacity" class="sapUiTinyMarginBottom" />
+                <ProgressIndicator percentValue="72" displayValue="72%"
+                                   state="Success" class="sapUiSmallMarginBottom" />
+                <Label text="Picking Queue" class="sapUiTinyMarginBottom" />
+                <ProgressIndicator percentValue="89" displayValue="89%"
+                                   state="Warning" class="sapUiSmallMarginBottom" />
+                <Label text="Error Rate" class="sapUiTinyMarginBottom" />
+                <ProgressIndicator percentValue="15" displayValue="15%"
+                                   state="Error" class="sapUiSmallMarginBottom" />
+            </VBox>
+        </Panel>
+
+    </Page>
+
+</mvc:View>

@@ -1,0 +1,71 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "poc.themeswitcher",
+        "type": "application",
+        "title": "UI5 Theme Switching POC",
+        "applicationVersion": {
+            "version": "1.0.0"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.120.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ui.unified": {},
+                "sap.f": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "models": {},
+        "rootView": {
+            "viewName": "poc.themeswitcher.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "poc.themeswitcher.view",
+                "controlId": "appContainer",
+                "controlAggregation": "pages"
+            },
+            "routes": [
+                {
+                    "name": "main",
+                    "pattern": "",
+                    "target": "main"
+                }
+            ],
+            "targets": {
+                "main": {
+                    "viewName": "Main",
+                    "viewId": "main",
+                    "viewLevel": 1
+                }
+            }
+        }
+    }
+}
