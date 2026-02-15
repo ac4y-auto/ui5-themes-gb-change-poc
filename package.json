@@ -4,8 +4,11 @@
     "description": "UI5 Runtime Theme Switching POC",
     "scripts": {
         "start": "npx @ui5/cli serve --open index.html --port 8100",
-        "start:cdn": "npx http-server webapp -p 8080 -o",
+        "start:cdn": "npx http-server webapp -p 8080 -o index-cdn.html",
+        "start:hybrid": "npx @ui5/cli serve --config ui5-backend.yaml --open index-hybrid.html --port 8300",
         "build": "npx @ui5/cli build"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "ui5-middleware-simpleproxy": "^3.6.2"
+    }
 }

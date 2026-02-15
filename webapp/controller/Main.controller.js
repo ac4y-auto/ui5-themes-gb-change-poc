@@ -1,9 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/Theming",
     "sap/m/MessageToast",
     "sap/ui/model/json/JSONModel"
-], function (Controller, Theming, MessageToast, JSONModel) {
+], function (Controller, MessageToast, JSONModel) {
     "use strict";
 
     // ====================================================================
@@ -99,8 +98,8 @@ sap.ui.define([
             });
             this.getView().setModel(oModel, "theme");
 
-            // Listen for base-theme applied events
-            Theming.attachApplied(this._onBaseThemeApplied.bind(this));
+            // Listen for base-theme applied events (1.105.0 compatible API)
+            sap.ui.getCore().attachThemeChanged(this._onBaseThemeApplied.bind(this));
 
             // Track which virtual theme is active
             this._sActiveThemeKey = null;
@@ -173,12 +172,12 @@ sap.ui.define([
             // 1. Always clear previous patch first
             this._removePatch();
 
-            var sCurrentBase = Theming.getTheme();
+            var sCurrentBase = sap.ui.getCore().getConfiguration().getTheme();
 
             if (sCurrentBase !== oThemeDef.base) {
                 // Base theme needs to change – queue the patch
                 this._oPendingPatch = oThemeDef.patch;
-                Theming.setTheme(oThemeDef.base);
+                sap.ui.getCore().applyTheme(oThemeDef.base);
             } else {
                 // Same base – apply patch immediately
                 this._applyPatch(oThemeDef.patch);

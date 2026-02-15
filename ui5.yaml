@@ -3,7 +3,7 @@ metadata:
   name: poc-theme-switcher
 type: application
 framework:
-  name: OpenUI5
+  name: SAPUI5
   version: "1.105.0"
   libraries:
     - name: sap.m
