@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI5 Virtual Theme Switching POC</title>
+
+    <!-- Environment configuration (injected at build/server start) -->
+    {{ENV_INJECTION}}
+    <script src="config.js"></script>
+
+    <!-- Splash screen styles -->
+    <link rel="stylesheet" href="splash-screen.css">
+
+    <!-- UI5 Bootstrap (dynamic injection based on environment) -->
+    <script src="ui5-bootstrap.js"></script>
+
+    <!-- Splash screen logic -->
+    <script src="splash-screen.js"></script>
+</head>
+<body class="sapUiBody sapUiSizeCompact loading">
+    <!-- Splash Screen Container -->
+    <div id="splash-screen">
+        <video id="splash-video" autoplay muted loop playsinline poster="splash-poster.jpeg">
+            <source src="splash-video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Environment Badge (shows which UI5 source is loaded) -->
+    <div id="env-badge"></div>
+
+    <!-- UI5 Application Container -->
+    <div id="content"
+        data-sap-ui-component
+        data-name="poc.themeswitcher"
+        data-id="container"
+        data-settings='{ "id": "poc.themeswitcher" }'>
+    </div>
+</body>
+</html>

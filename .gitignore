@@ -1,13 +1,19 @@
-# Node modules
+# Dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+package-lock.json
 
 # Build artifacts
 dist/
 build/
 *.tgz
+
+# Generated from index.template.html by build.js
+webapp/index.html
+
+# Environment variables
+.env
+.env.local
+.env.*.local
 
 # IDE files
 .vscode/
@@ -15,20 +21,23 @@ build/
 *.swp
 *.swo
 *~
-.DS_Store
 
 # Claude settings
 .claude/
 
-# Environment files
-.env
-.env.local
-.env.*.local
-
 # Logs
 logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # OS files
+.DS_Store
 Thumbs.db
 Desktop.ini
+
+# Temporary files
+tmp/
+temp/
+.tmp/
