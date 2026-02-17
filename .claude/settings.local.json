@@ -20,7 +20,20 @@
       "Bash(winget install:*)",
       "Bash(/c/Program Files/GitHub CLI/gh auth login --web)",
       "Bash(npm install:*)",
-      "Bash(npx @ui5/cli serve:*)"
+      "Bash(npx @ui5/cli serve:*)",
+      "Bash(__NEW_LINE_c832c1478c486ee2__ echo \"=== COMPARISON: ui5.yaml ===\")",
+      "Bash(__NEW_LINE_e8b9f1ca2cc58cd0__ echo \"=== COMPARISON: config.js ===\")",
+      "Bash(__NEW_LINE_dfc63c8877aba9b2__ echo \"=== COMPARISON: Component.js \\(at different paths\\) ===\")",
+      "Bash(__NEW_LINE_e4ab4f82b90c7554__ echo \"=== COMPARISON: controller/App.controller.js ===\")",
+      "Bash(__NEW_LINE_64d4234ad28ba664__ echo \"=== COMPARISON: view/App.view.xml ===\")",
+      "Bash(__NEW_LINE_21a16b6f2aba61c8__ echo \"=== COMPARISON: manifest.json ===\")",
+      "Bash(find:*)",
+      "Bash(__NEW_LINE_1cb184d9be0a8399__ echo \"=== WMS-INTEGRATION FILES: SPLASH SCREEN ===\")",
+      "Bash(__NEW_LINE_e4d8c7fea9e61ffe__ echo \"=== COMPARISON: ui5-backend.yaml ===\")",
+      "Bash(node build.js:*)",
+      "Bash(test:*)",
+      "Bash(git -C /Volumes/DevAPFS/work/ui5/ui5-splash-screen-poc log --oneline -10)",
+      "Bash(git -C /Volumes/DevAPFS/work/ui5/ui5-splash-screen-poc log --pretty=format:\"%h - %s \\(%ar\\)\" -15)"
     ]
   }
 }

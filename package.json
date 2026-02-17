@@ -5,8 +5,8 @@
     "scripts": {
         "start": "npm run smart-start:cdn",
         "start:cdn": "node build.js cdn && npx http-server webapp -p ${PORT:-8300} --cors -o",
-        "start:local": "node build.js local && npx @ui5/cli serve --port ${PORT:-8300} --open",
-        "start:hybrid": "node build.js hybrid && npx @ui5/cli serve --port ${PORT:-8300} --config ui5-backend.yaml --open",
+        "start:local": "node build.js local && fiori run --open --port ${PORT:-8300}",
+        "start:hybrid": "node build.js hybrid && fiori run --open --port ${PORT:-8300} --config ui5-backend.yaml",
         "start:backend": "node build.js backend && npx http-server webapp -p ${PORT:-8300} --cors -o",
         "smart-start:cdn": "node start.js cdn",
         "smart-start:local": "node start.js local",
@@ -15,9 +15,9 @@
         "build": "node build.js",
         "build:ui5": "npx @ui5/cli build",
         "serve:cdn": "npx http-server webapp -p ${PORT:-8300} --cors -o",
-        "serve:local": "npx @ui5/cli serve --port ${PORT:-8300} --open",
+        "serve:local": "fiori run --port ${PORT:-8300} --open",
         "serve:backend": "npx http-server webapp -p ${PORT:-8300} --cors -o",
-        "serve:hybrid": "npx @ui5/cli serve --port ${PORT:-8300} --config ui5-backend.yaml --open"
+        "serve:hybrid": "fiori run --port ${PORT:-8300} --open --config ui5-backend.yaml"
     },
     "keywords": [
         "ui5",
@@ -29,6 +29,7 @@
     "author": "ac4y",
     "license": "MIT",
     "devDependencies": {
+        "@sap/ux-ui5-tooling": "^1",
         "@ui5/cli": "^4.0.43",
         "http-server": "^14.1.1",
         "ui5-middleware-simpleproxy": "^3.6.2"
