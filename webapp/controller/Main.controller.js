@@ -16,6 +16,18 @@ sap.ui.define([
         "--sapContent_LabelColor":    "#ffcccc"
     };
 
+    var ALARM_CSS_ID = "alarm-theme-override";
+    var ALARM_CSS = [
+        ".sapUiBody { background-color: #8b0000 !important; }",
+        ".sapMShellBG { background-color: #8b0000 !important; }",
+        ".sapMShell > .sapMShellBG { background-color: #8b0000 !important; }",
+        ".sapMPage { background-color: #5c0000 !important; }",
+        ".sapMPageBgSolid { background-color: #5c0000 !important; }",
+        ".sapMBar { background-color: #6b0000 !important; }",
+        ".sapMPageHeader { background-color: #6b0000 !important; }",
+        ".sapMDialogBlockLayer { background-color: rgba(139, 0, 0, 0.7) !important; }"
+    ].join("\n");
+
     return Controller.extend("poc.themeswitcher.controller.Main", {
 
         onInit: function () {
@@ -29,6 +41,12 @@ sap.ui.define([
                 Object.keys(ALARM_PATCH).forEach(function (sVar) {
                     document.documentElement.style.setProperty(sVar, ALARM_PATCH[sVar]);
                 });
+                if (!document.getElementById(ALARM_CSS_ID)) {
+                    var oStyle = document.createElement("style");
+                    oStyle.id = ALARM_CSS_ID;
+                    oStyle.textContent = ALARM_CSS;
+                    document.head.appendChild(oStyle);
+                }
             };
 
             if (sCurrentTheme !== "sap_horizon_dark") {
@@ -44,7 +62,13 @@ sap.ui.define([
         },
 
         _restoreTheme: function () {
-            document.documentElement.removeAttribute("style");
+            // Remove only the CSS variables we set (not the whole style attribute,
+            // because UI5 may set height:100% on <html> which is needed for Shell layout)
+            Object.keys(ALARM_PATCH).forEach(function (sVar) {
+                document.documentElement.style.removeProperty(sVar);
+            });
+            var oStyle = document.getElementById(ALARM_CSS_ID);
+            if (oStyle) { oStyle.remove(); }
             var sCurrentTheme = sap.ui.getCore().getConfiguration().getTheme();
             if (sCurrentTheme !== this._sOriginalTheme) {
                 sap.ui.getCore().applyTheme(this._sOriginalTheme);
