@@ -33,7 +33,8 @@
       "Bash(node build.js:*)",
       "Bash(test:*)",
       "Bash(git -C /Volumes/DevAPFS/work/ui5/ui5-splash-screen-poc log --oneline -10)",
-      "Bash(git -C /Volumes/DevAPFS/work/ui5/ui5-splash-screen-poc log --pretty=format:\"%h - %s \\(%ar\\)\" -15)"
+      "Bash(git -C /Volumes/DevAPFS/work/ui5/ui5-splash-screen-poc log --pretty=format:\"%h - %s \\(%ar\\)\" -15)",
+      "Bash(lsof:*)"
     ]
   }
 }
