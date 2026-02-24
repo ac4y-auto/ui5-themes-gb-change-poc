@@ -43,18 +43,9 @@ A **virtuális téma** megközelítés erre épít, de kibővíti: egy valódi a
 használnak a színekhez (`--sapBrandColor`, `--sapBackgroundColor`, stb.), és ezek futásidőben
 felülírhatók a `document.documentElement.style.setProperty()` hívással.
 
-```mermaid
-graph LR
-    subgraph VT["&laquo;alarm&raquo; Virtual Theme"]
-        BASE["Base Theme<br/><b>sap_horizon_dark</b><br/><i>applyTheme API</i>"]
-        PATCH["CSS Patch<br/><b>--sap* változók</b><br/><i>:root inline style</i>"]
-    end
-    BASE --- PATCH
-
-    style VT fill:#2d0a0a,stroke:#ff1744,stroke-width:2px,color:#fff
-    style BASE fill:#1a237e,stroke:#5c6bc0,color:#fff
-    style PATCH fill:#b71c1c,stroke:#ff5252,color:#fff
-```
+| Virtual Theme = | Base Theme | + | CSS Patch |
+|:---------------:|:----------:|:-:|:---------:|
+| **"alarm"** | `sap_horizon_dark` | | `--sap*` változók `:root`-on |
 
 Így egyetlen alap témából tetszőleges számú vizuális variánst hozhatunk létre build lépés nélkül.
 
