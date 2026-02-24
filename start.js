@@ -159,17 +159,12 @@ function main() {
 
     console.log(`\nStarting server...\n`);
 
-    // Determine command based on environment
+    // Determine command based on environment - always use fiori run
     let command, args;
-    if (env === 'local' || env === 'hybrid') {
-        command = 'npx';
-        args = ['ui5', 'serve', '--port', DEFAULT_PORT.toString(), '--open'];
-        if (env === 'hybrid') {
-            args.push('--config', 'ui5-backend.yaml');
-        }
-    } else {
-        command = 'npx';
-        args = ['http-server', 'webapp', '-p', DEFAULT_PORT.toString(), '--cors', '-o'];
+    command = 'npx';
+    args = ['fiori', 'run', '--port', DEFAULT_PORT.toString(), '--open'];
+    if (env === 'hybrid') {
+        args.push('--config', 'ui5-backend.yaml');
     }
 
     // Start server with PROJECT_MARKER in environment

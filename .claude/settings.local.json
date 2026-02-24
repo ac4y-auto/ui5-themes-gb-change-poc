@@ -34,7 +34,20 @@
       "Bash(test:*)",
       "Bash(git -C /Volumes/DevAPFS/work/ui5/ui5-splash-screen-poc log --oneline -10)",
       "Bash(git -C /Volumes/DevAPFS/work/ui5/ui5-splash-screen-poc log --pretty=format:\"%h - %s \\(%ar\\)\" -15)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(git -C \"C:\\\\work\\\\ui5\\\\ui5-themes-gb-change-poc\" log --oneline -10)",
+      "Bash(wmic process:*)",
+      "Bash(tasklist:*)",
+      "Bash(cmd /c \"tasklist /FI \"\"PID eq 18084\"\" /FO LIST\")",
+      "Bash(cmd /c \"tasklist /fi \"\"PID eq 18084\"\"\")",
+      "Bash(powershell -Command \"Get-Process -Id 18084 | Select-Object ProcessName, Id, Path | Format-List\")",
+      "Bash(cmd /c \"taskkill /PID 18084 /F\")",
+      "Bash(powershell -Command \"Start-Sleep -Seconds 2; netstat -ano | findstr '':8300''\")",
+      "Bash(cmd /c \"taskkill /PID 18084 /F /T\")",
+      "Bash(powershell -Command:*)",
+      "Bash(cmd /c \"cd /d C:\\\\work\\\\ui5\\\\ui5-themes-gb-change-poc && npx http-server webapp -p 8300 --cors -o\")",
+      "Bash(node:*)",
+      "Bash(npx fiori:*)"
     ]
   }
 }
