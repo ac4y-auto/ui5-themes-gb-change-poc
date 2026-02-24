@@ -38,8 +38,7 @@ Az alkalmazás elérhető: http://localhost:8100/index.html
 
 ## Dokumentáció
 
-- **[VIRTUAL-THEME-GUIDE.md](VIRTUAL-THEME-GUIDE.md)** - Általános integrációs útmutató (JS projektek)
-- **[wms-integration/INTEGRATION-GUIDE.md](wms-integration/INTEGRATION-GUIDE.md)** - WMS-specifikus TypeScript integráció
+- **[wms-integration/INTEGRATION-GUIDE.md](../wms-integration/INTEGRATION-GUIDE.md)** - Integrációs útmutató (TypeScript, WMS)
 
 ## Architektúra
 

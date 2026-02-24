@@ -455,13 +455,12 @@ cmd //c "taskkill /PID [PID] /F"
 
 ### Dokumentációk
 - **README.md** - Projekt áttekintés
-- **VIRTUAL-THEME-GUIDE.md** - Virtuális téma integrációs útmutató
+- **[wms-integration/INTEGRATION-GUIDE.md](../wms-integration/INTEGRATION-GUIDE.md)** - Integrációs útmutató (TypeScript, WMS)
 - **HYBRID_MODE_GUIDE.md** - Hybrid mód (reverse proxy) útmutató
 - **JUST-RUN-IT.md** - Gyors indítási referencia
 - **KONZEPCIÓ.md** - Architektúra
 - **FEJLESZTOI_UTASITAS.md** - Splash screen integráció
 - **SMART_START_GUIDE.md** - Smart Start dokumentáció
-- **WMS-INTEGRATION-GUIDE.md** - WMS TypeScript integráció
 
 ### GitHub
 - **User**: ac4y-auto

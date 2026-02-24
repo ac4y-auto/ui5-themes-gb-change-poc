@@ -17,7 +17,8 @@
         "serve:cdn": "fiori run --port ${PORT:-8300} --open",
         "serve:local": "fiori run --port ${PORT:-8300} --open",
         "serve:backend": "fiori run --port ${PORT:-8300} --open",
-        "serve:hybrid": "fiori run --port ${PORT:-8300} --open --config ui5-backend.yaml"
+        "serve:hybrid": "fiori run --port ${PORT:-8300} --open --config ui5-backend.yaml",
+        "pdf": "md-to-pdf wms-integration/INTEGRATION-GUIDE.md && md-to-pdf wms-integration/INTEGRATION-GUIDE-TLDR.md && md-to-pdf wms-integration/USAGE-GUIDE.md && md-to-pdf wms-integration/USAGE-GUIDE-TLDR.md"
     },
     "keywords": [
         "ui5",
@@ -32,6 +33,7 @@
         "@sap/ux-ui5-tooling": "^1",
         "@ui5/cli": "^4.0.43",
         "http-server": "^14.1.1",
+        "md-to-pdf": "^5.2.5",
         "ui5-middleware-simpleproxy": "^3.6.2"
     }
 }

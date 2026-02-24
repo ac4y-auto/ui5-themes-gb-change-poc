@@ -47,7 +47,15 @@
       "Bash(powershell -Command:*)",
       "Bash(cmd /c \"cd /d C:\\\\work\\\\ui5\\\\ui5-themes-gb-change-poc && npx http-server webapp -p 8300 --cors -o\")",
       "Bash(node:*)",
-      "Bash(npx fiori:*)"
+      "Bash(npx fiori:*)",
+      "Bash(cmd /c dir:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm ls:*)",
+      "Bash(set PUPPETEER_SKIP_DOWNLOAD=true)",
+      "Bash(PUPPETEER_SKIP_DOWNLOAD=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install:*)",
+      "Bash(PUPPETEER_EXECUTABLE_PATH=\"C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\" npx md-to-pdf:*)",
+      "Bash(npx md-to-pdf:*)",
+      "Bash(chmod:*)"
     ]
   }
 }
