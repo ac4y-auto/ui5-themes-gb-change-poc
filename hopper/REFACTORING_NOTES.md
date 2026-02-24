@@ -354,9 +354,9 @@ npx terser ui5-bootstrap.js -o ui5-bootstrap.min.js
 
 ---
 
-## ✨ Következő Lépések
+## ✨ Következő Lépések (v2.0)
 
-- [ ] WMS projektbe integrálás
+- [x] WMS projektbe integrálás ✅ (kész, lásd v3.0 szekció)
 - [ ] Minification setup (production)
 - [ ] CDN hosting (splash assets)
 - [ ] Performance monitoring
@@ -364,7 +364,48 @@ npx terser ui5-bootstrap.js -o ui5-bootstrap.min.js
 
 ---
 
+# 🔄 v3.0 — WMS beépítési tapasztalatok visszavezetése
+
+**Dátum**: 2026-02-24
+**Verzió**: 3.0
+**Státusz**: ✅ Completed
+
+---
+
+## 📋 Mi történt a WMS-ben?
+
+A POC-ot sikeresen integráltuk az `sapui5-wms` projektbe. Az integráció során a következő
+javítások születtek, amiket visszavezettünk a POC-ba:
+
+### Témaváltás (VirtualThemeManager)
+
+A WMS beépítés igazolta a POC-ban leírt mintákat. A `wms-integration/INTEGRATION-GUIDE.md`
+frissítésre került az alábbi bővítésekkel:
+
+| Bővítés | Leírás |
+|---------|--------|
+| **6 téma (mind a 6)** | Korábban 3 téma volt dokumentálva, most mind a 6 (normal, normal_branded, warning, alarm, nightshift, nightshift_dimmed) |
+| **Elérhető témák tábla** | Patch és CSS override oszlopokkal kiegészítve |
+| **Teljes API szekció** | switchTheme, applyDefault, getActiveThemeKey, getActiveTheme, getThemes, getThemeDefinition, register |
+| **cssOverrides támogatás** | `!important` szabályokat injektáló `<style>` tag dokumentálása |
+| **6 használati példa** | Hibakezelés, warning timeout, éjszakai mód, Select UI, egyedi téma, WebSocket |
+| **Ellenőrző lista** | Setup checklist a beépítéshez |
+| **Mire figyelj szekció** | 7 gotcha (transpile bug, idempotens switchTheme, nincs rétegezés, stb.) |
+| **Működés részletesen** | Base theme váltás mechanizmus, CSS patch alkalmazás, override eltávolítás |
+| **Tartalomjegyzék** | Navigálható fejezetek |
+
+### Mit NEM módosítottunk
+
+| Fájl | Ok |
+|------|-----|
+| `wms-integration/m/VirtualThemeManager.ts` | A kód nem változott, csak a dokumentáció |
+| `wms-integration/Component.ts` | Referencia fájl, nem módosult |
+| `webapp/Component.js` | A POC JavaScript marad (TypeScript a WMS dolga) |
+| `build.js`, `start.js` | POC-specifikus, a WMS nem használja |
+
+---
+
 **Refactoring készítette**: Claude Sonnet 4.5
-**Dátum**: 2026-02-12
-**Verzió**: 2.0
+**Dátum**: 2026-02-12 (v2.0), 2026-02-24 (v3.0)
+**Verzió**: 3.0
 **Státusz**: ✅ Production Ready

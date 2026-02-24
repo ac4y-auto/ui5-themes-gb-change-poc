@@ -176,6 +176,64 @@ transition: opacity 0.5s ease-out; /* 500ms fade */
 
 ---
 
+## 🎨 VIRTUAL THEME MANAGER
+
+### Elérhető témák
+
+| Kulcs               | Base theme          | Leírás                    |
+|---------------------|---------------------|---------------------------|
+| `normal`            | `sap_horizon`       | Alapértelmezett világos   |
+| `normal_branded`    | `sap_horizon`       | Zöld branded verzió       |
+| `warning`           | `sap_horizon`       | Sárga/amber figyelmeztető |
+| `alarm`             | `sap_horizon_dark`  | Vörös riasztás (kritikus) |
+| `nightshift`        | `sap_horizon_dark`  | Sötét mód                 |
+| `nightshift_dimmed` | `sap_horizon_dark`  | Extra sötét éjszakai      |
+
+### Téma váltás (1 sor)
+
+```typescript
+(this.getOwnerComponent() as Component).getVirtualThemeManager().switchTheme("alarm");
+```
+
+### API gyorsreferencia
+
+```typescript
+const vtm = VirtualThemeManager.getInstance();
+
+vtm.switchTheme("alarm");           // boolean
+vtm.applyDefault();                  // void
+vtm.getActiveThemeKey();             // string | null
+vtm.getThemes();                     // VirtualThemeInfo[]
+
+// Egyedi téma regisztrálás
+VirtualThemeManager.register("my_theme", {
+    base: "sap_horizon",
+    label: "Saját téma",
+    patch: { "--sapBrandColor": "#ff6600" }
+});
+```
+
+### Gotchák
+
+- Nincs perzisztencia (oldal reload = normal téma)
+- Egyszerre **egy** téma aktív, nincs rétegezés
+- `switchTheme()` idempotens – duplán hívás nem baj
+- Class property-ket `onInit()`-ben inicializáld (transpile bug)
+- `Theming.getTheme()` a **base** theme-t adja, NEM a virtuális kulcsot
+
+### Beépítési fájlok
+
+| Fájl | Hely |
+|------|------|
+| `VirtualThemeManager.ts` | `wms-integration/m/VirtualThemeManager.ts` → `webapp/m/` |
+| `Component.ts` | +1 import, +1 init sor, +1 accessor |
+
+### Teljes doku
+
+- `wms-integration/INTEGRATION-GUIDE.md` — teljes beépítési útmutató (6 példával)
+
+---
+
 ## 🔐 GIT & GITHUB
 
 ### Repository
