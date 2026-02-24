@@ -35,7 +35,7 @@ készült, frissített verzió.
 
 ## Koncepció: Miért "virtuális" témák?
 
-Az UI5 beépített `Theming.setTheme()` API-ja csak valódi, előre buildelt témákat tud váltani
+Az UI5 beépített `sap.ui.getCore().applyTheme()` API-ja csak valódi, előre buildelt témákat tud váltani
 (pl. `sap_horizon` ↔ `sap_horizon_dark`). Ez viszonylag kevés variációt kínál.
 
 A **virtuális téma** megközelítés erre épít, de kibővíti: egy valódi alap témát kombinál
@@ -63,7 +63,7 @@ témaváltás eseményvezérelt figyelmeztetésre szolgál, nem felhasználói p
 
 ## Előfeltételek
 
-- SAPUI5 1.105+ (szükséges a `sap/ui/core/Theming` API-hoz)
+- SAPUI5 1.84+ (a VTM a legacy `sap.ui.getCore()` API-t használja a széles kompatibilitás érdekében)
 - TypeScript alapú UI5 projekt
 - `sap_horizon` és `sap_horizon_dark` témák elérhetők (ui5.yaml-ban `themelib_sap_horizon`)
 
@@ -463,8 +463,12 @@ A teljes lista elérhető:
 6. **A `getThemes()` a regisztrált témákat is tartalmazza** – ha `register()`-rel bővítesz,
    az automatikusan megjelenik a listában.
 
-7. **`Theming.getTheme()` a base theme-t adja vissza, NEM a virtuális kulcsot** – használd a
-   `vtm.getActiveThemeKey()` metódust.
+7. **`sap.ui.getCore().getConfiguration().getTheme()` a base theme-t adja vissza, NEM a virtuális kulcsot** –
+   használd a `vtm.getActiveThemeKey()` metódust.
+
+8. **Ne használd a modern `import Theming from "sap/ui/core/Theming"` API-t** – a `sap/ui/core/Theming`
+   modul csak SAPUI5 1.118+ felett érhető el, és a `@sapui5/ts-types-esm` csomag sem tartalmazza a
+   típusdefinícióját. A VTM ezért a legacy `sap.ui.getCore()` API-t használja, ami 1.84+-tól működik.
 
 ---
 

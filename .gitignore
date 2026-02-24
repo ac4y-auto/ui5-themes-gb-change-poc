@@ -37,6 +37,9 @@ yarn-error.log*
 Thumbs.db
 Desktop.ini
 
+# Windows NUL device artifact (created by Git Bash redirect to NUL)
+nul
+
 # Temporary files
 tmp/
 temp/
